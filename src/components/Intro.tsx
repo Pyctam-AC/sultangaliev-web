@@ -1,63 +1,75 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { FC, useCallback, useEffect, useRef, useState } from "react";
+import { FC, MouseEventHandler, useCallback, useEffect, useRef, useState } from "react";
 
 import scrollDownImg from '../images/scroll-down.png';
 
 const Intro: FC = () => {
-  const introScreen: any = useRef();
-  const squaresBoard: any = useRef();
 
-  const firstLine: any = useRef();
-  const secondLine: any = useRef();
-  const thirdLine: any = useRef();
+  // Используем useRef для получения ссылок на DOM элементы
+  const introScreen = useRef<HTMLDivElement>();
+  const squaresBoard = useRef<HTMLDivElement>(null);
 
+  // Инициализируем useRef с типом соответствующего DOM элемента
+  const firstLine = useRef<HTMLHeadingElement>(null);
+  const secondLine = useRef<HTMLHeadingElement>(null);
+  const thirdLine = useRef<HTMLHeadingElement>(null);
+
+  // Интерфейс для определения типа colorPalettes
   interface ColorPalettes {
     [key: string]: string[];
   }
 
   const colorPalettes: ColorPalettes = {
-    default: ['264653', '2A9D8F', 'E9C46A', 'F4A261', 'E76F51'],
-    neon: ['7400B8', '6930C3', '5E60CE', '5390D9', '4EA8DE', '48BFE3', '56CFE1', '64DFDF', '72EFDD', '80FFDB'],
-    pinky: ['FADDE1', 'FFC4D6', 'FFA6C1', 'FF87AB', 'FF5D8F', 'FF97B7', 'FFACC5', 'FFCAD4'],
-    blue: ['03045E', '023E8A', '0077B6', '0096C7', '00B4D8', '48CAE4', '90E0EF', 'ADE8F4'],
-    rainbow: ['FF0000', 'FF8700', 'DEFF0A', 'A1FF0A', '0AEFFF', '580AFF', 'BE0AFF']
-  }
+    default: ['FFFF00', 'DAA520', '9370DB', 'FFA07A', 'FFD700', '00BFFF', '00CED1', 'FF69B4', '7FFF00', 'FFD700'],
+    neon: ['FFFF00', 'DAA520', 'FF69B4', 'FF6347', 'FFD700', 'FF8C00', '00FFFF', '00CED1', '00BFFF', '7FFF00'],
+    pinky: ['FFFF00', 'DAA520', 'FF69B4', 'FF6347', 'FFD700', 'FF8C00', 'FF1493', 'FF00FF'],
+    blue: ['FFFF00', 'DAA520', '9370DB', 'FFA07A', '4169E1', '87CEEB', '00BFFF', 'ADD8E6'],
+    rainbow: ['FFFF00', 'DAA520', 'FF69B4', 'FF6347', '800080', 'FFD700']
+}
 
+
+  // Состояние активной палитры цветов и массив квадратов
   const [activeColorPalette, setActiveColorPalette] = useState<string[]>(colorPalettes.neon);
   const [squaresArray, setSquaresArray] = useState<JSX.Element[]>([]);
 
-  const squareMouseOverHandle = (e: MouseEvent<Element, MouseEvent>) : void => {
-    const target = e.target as HTMLElement;
+  // Обработчик события наведения мыши на квадрат
+  const squareMouseOverHandle: MouseEventHandler<HTMLDivElement> = (e) => {
+    const target = e.target as HTMLDivElement;
     if (target.dataset.role === 'square') {
       setColor(target);
     }
   }
 
+  // Функция установки цвета квадрата
   const setColor = useCallback(
     (target: HTMLElement, timer: number = 0) : void => {
       const getRandomColor = () => {
-        const colorIndex: number = Math.round(Math.random() * activeColorPalette.length);
+        const colorIndex: number = Math.round(Math.random() * (activeColorPalette.length - 1));
         return activeColorPalette[colorIndex];
       }
 
       setTimeout(() => {
-        target.style.backgroundColor = '#' + getRandomColor();
+        if (target)
+        {target.style.backgroundColor = '#' + getRandomColor()}
       }, timer);
 
       setTimeout(() => {
-        target.style.backgroundColor = '#1d1d1d';
+        if (target)
+        {target.style.backgroundColor = '#1d1d1d'}
       }, timer + 700);
     },
     [activeColorPalette]
   )
 
   const getRandomElement = (elementsArray: NodeListOf<Element>) => {
-    return elementsArray[Math.round(Math.random() * (elementsArray.length-1))] as any;
+    return elementsArray[Math.round(Math.random() * (elementsArray.length-1))] as HTMLElement;
   }
 
- useEffect(() => {
-    const characters = "Hi,I'm Arseniy,web developer".split('');
+  const letterrEffect = () => {
+
+    const characters = "Hi, I'm Rustam,web developer".split("");
+
     characters.forEach((char, i) => {
       const letter = document.createElement('span');
       if (char === ' ') {
@@ -67,7 +79,7 @@ const Intro: FC = () => {
       }
       letter.classList.add('intro_header_letter');
 
-      if (char === 'A') {
+      if (char === 'R') {
         letter.classList.add('intro_header_letter-main');
         letter.dataset.aos="letter-animation";
         letter.dataset.aosDuration="800";
@@ -81,40 +93,44 @@ const Intro: FC = () => {
       letter.dataset.aosDelay=`${i * 100}`;
 
       if (i < 3) {
-        firstLine.current.append(letter);
+        firstLine.current?.append(letter);
       } else if (i < 15) {
-        secondLine.current.append(letter);
+        secondLine.current?.append(letter);
       } else if (i < 28) {
-        thirdLine.current.append(letter);
+        thirdLine.current?.append(letter);
       }
     });
+  }
+
+  // useEffect для инициализации заголовков при монтировании компонента
+  useEffect(() => {
+
+    letterrEffect()
+
   }, []);
 
- useEffect(() => {
-    const introDivRect = introScreen.current.getBoundingClientRect();
-    const squaresAmount = Math.floor(introDivRect.width * introDivRect.height / (20*20));
-    const newSquaresArray: Array<JSX.Element> = [];
-    for (let i = 0; i < squaresAmount; i++) {
-      newSquaresArray.push(<div key={i} className="square" data-role="square"></div>)
-    }
 
-    (async () => {
-      try {
-        await setSquaresArray(newSquaresArray);
-        const squares = document.querySelectorAll('[data-role=square]');
-        const intervalId = setInterval(() => {
-          for (let i = 1; i < 8; i++) {
-            setColor(getRandomElement(squares), i * 100 + 200);
-          }
-        }, 600);
+  // useEffect для инициализации массива квадратов при монтировании компонента
+  useEffect(() => {
 
-      } catch (error) {
-        if (typeof error === 'object' && error !== null) {
-          console.log(error.toString());
-        }
+    const introDivRect = introScreen.current?.getBoundingClientRect();
+    if (introDivRect) {
+      const squaresAmount = Math.floor((introDivRect.width ?? 0) * (introDivRect.height ?? 0) / (20*20));
+      const newSquaresArray: Array<JSX.Element> = [];
+      for (let i = 0; i < squaresAmount; i++) {
+        newSquaresArray.push(<div key={i} className="square" data-role="square"></div>);
       }
-    })();
+      setSquaresArray(newSquaresArray);
 
+      const squares = document.querySelectorAll('[data-role=square]');
+      const intervalId = setInterval(() => {
+        for (let i = 1; i < 8; i++) {
+          setColor(getRandomElement(squares), i * 100 + 200);
+        }
+      }, 600);
+
+      return () => clearInterval(intervalId);
+    }
   }, [introScreen, setColor]);
 
 
@@ -128,7 +144,7 @@ const Intro: FC = () => {
         <div className="intro_contact" data-aos="fade-down" data-aos-duration="800" data-aos-delay="3000">
           <a href="#contact"><button className="animated-button intro_contact-button">Reach me</button></a>
         </div>
-        <div ref={squaresBoard} onMouseOver={(e) => squareMouseOverHandle(e)} className="intro_board" id="board">
+        <div ref={squaresBoard} onMouseOver={squareMouseOverHandle} className="intro_board" id="board">
           {squaresArray}
         </div>
         <a href="#about" className="intro_scroll-down">

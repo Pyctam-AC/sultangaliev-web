@@ -13,6 +13,9 @@ const Heading:FC<IHeadingfProps> = ({text}) => {
 
 
   useEffect(() => {
+
+    heading.current.innerHTML = '';
+
     characters.forEach((char, i) => {
       const letter = document.createElement('span');
       if (char === ' ') {
@@ -28,7 +31,7 @@ const Heading:FC<IHeadingfProps> = ({text}) => {
 
       heading.current.append(letter)
     });
-  }, []);
+  }, [characters]);
 
 
   return (

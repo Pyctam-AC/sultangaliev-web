@@ -1,4 +1,6 @@
 import React, { FC, Suspense } from "react"
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import './styles/index.scss'
 import Navbar from "./components/Navbar";
 import ResumeLink from "./components/ResumeLink";
@@ -11,6 +13,8 @@ const Portfolio = React.lazy(() => import('./components/Portfolio'));
 
 
 const App:FC = () => {
+
+  AOS.init();
 
   return (
     <>

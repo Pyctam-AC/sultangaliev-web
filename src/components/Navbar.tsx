@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, {FC} from "react";
+import {FC, useRef, useState} from "react";
 
 import HomeIcon from '../images/menu-icons/home.svg';
 import ToolsIcon from '../images/menu-icons/tools.svg';
@@ -12,9 +12,9 @@ import GithubIcon from '../images/menu-icons/github.svg';
 //import InstagramIcon from '../images/menu-icons/instagram.svg';
 
 const Navbar:FC = () => {
-  const navbar: any = React.useRef(null)
+  const navbar: any = useRef(null)
 
-  const [isNavbarActive, setNavbarActive] = React.useState(false)
+  const [isNavbarActive, setNavbarActive] = useState(false)
   const toggleNavbar = () => {
     setNavbarActive((prev) => !prev)
   }
@@ -33,6 +33,7 @@ const Navbar:FC = () => {
       <div className="main-menu_navigation">
         <a href="#home" data-name="home" className="main-menu_navigation_item">
           <img src={HomeIcon} />
+         {/*  <HomeIcon /> */}
           <p>Home</p>
         </a>
         <a href="#about" data-name="about" className="main-menu_navigation_item">

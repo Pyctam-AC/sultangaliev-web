@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import resumePdf from '../docs/ArseniyPomazkov_Resume.pdf';
+import resumePdf from '../docs/Rustam_Sultangaliev_resume.pdf';
 
 const ResumeLink:FC = () => {
   return (
