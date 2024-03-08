@@ -11,7 +11,8 @@ import jsImg from '../images/skills-icons/javascript.svg';
 import reactImg from '../images/skills-icons/react.svg';
 import reduxImg from '../images/skills-icons/redux.svg';
 import typescriptImg from '../images/skills-icons/typescript.svg';
-import jqueryImg from '../images/skills-icons/jquery.svg';
+//import jqueryImg from '../images/skills-icons/jquery.svg';
+import angular from '../images/skills-icons/angular-icon-logo.png'
 
 import gitImg from '../images/skills-icons/git.svg';
 import jiraImg from '../images/skills-icons/jira.png';
@@ -21,7 +22,9 @@ import agileImg from '../images/skills-icons/jquery.svg';
 import nodejsImg from '../images/skills-icons/nodejs.svg';
 import expressImg from '../images/skills-icons/express.png';
 import mongodbImg from '../images/skills-icons/mongodb.png';
-import nestjsImg from '../images/skills-icons/nestjs.png'
+//import nestjsImg from '../images/skills-icons/nestjs.png';
+import appscript from '../images/skills-icons/apps_script_1x_24dp.png'
+
 
 const Skills:FC = () => {
   return (
@@ -70,8 +73,8 @@ const Skills:FC = () => {
                   <p className="skills_card_list_item_name">TypeScript</p>
                 </li>
                 <li className="skills_card_list_item">
-                  <img src={jqueryImg} alt="jquery" />
-                  <p className="skills_card_list_item_name">jQuery</p>
+                  <img src={angular} alt="angular" />
+                  <p className="skills_card_list_item_name">Angular</p>
                 </li>
               </ul>
             </div>
@@ -112,8 +115,8 @@ const Skills:FC = () => {
                   <p className="skills_card_list_item_name">Mongo DB</p>
                 </li>
                 <li className="skills_card_list_item">
-                  <img src={nestjsImg} alt="nest js" />
-                  <p className="skills_card_list_item_name">NestJS</p>
+                  <img src={appscript} alt="nest js" />
+                  <p className="skills_card_list_item_name">AppsScripts</p>
                 </li>
               </ul>
             </div>

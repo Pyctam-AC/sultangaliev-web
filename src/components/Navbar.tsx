@@ -33,7 +33,7 @@ const Navbar:FC = () => {
       <div className="main-menu_navigation">
         <a href="#home" data-name="home" className="main-menu_navigation_item">
           <img src={HomeIcon} />
-         {/*  <HomeIcon /> */}
+         {/* <HomeIcon /> */}
           <p>Home</p>
         </a>
         <a href="#about" data-name="about" className="main-menu_navigation_item">

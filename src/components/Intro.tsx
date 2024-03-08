@@ -3,31 +3,19 @@
 import { FC, MouseEventHandler, useCallback, useEffect, useRef, useState } from "react";
 
 import scrollDownImg from '../images/scroll-down.png';
+import letterrEffect from "../utils/letterrEffect";
+import colorPalettes from "../utils/colorPalettes";
 
 const Intro: FC = () => {
 
   // Используем useRef для получения ссылок на DOM элементы
-  const introScreen = useRef<HTMLDivElement>();
+  const introScreen = useRef<HTMLDivElement>(null);
   const squaresBoard = useRef<HTMLDivElement>(null);
 
   // Инициализируем useRef с типом соответствующего DOM элемента
   const firstLine = useRef<HTMLHeadingElement>(null);
   const secondLine = useRef<HTMLHeadingElement>(null);
   const thirdLine = useRef<HTMLHeadingElement>(null);
-
-  // Интерфейс для определения типа colorPalettes
-  interface ColorPalettes {
-    [key: string]: string[];
-  }
-
-  const colorPalettes: ColorPalettes = {
-    default: ['FFFF00', 'DAA520', '9370DB', 'FFA07A', 'FFD700', '00BFFF', '00CED1', 'FF69B4', '7FFF00', 'FFD700'],
-    neon: ['FFFF00', 'DAA520', 'FF69B4', 'FF6347', 'FFD700', 'FF8C00', '00FFFF', '00CED1', '00BFFF', '7FFF00'],
-    pinky: ['FFFF00', 'DAA520', 'FF69B4', 'FF6347', 'FFD700', 'FF8C00', 'FF1493', 'FF00FF'],
-    blue: ['FFFF00', 'DAA520', '9370DB', 'FFA07A', '4169E1', '87CEEB', '00BFFF', 'ADD8E6'],
-    rainbow: ['FFFF00', 'DAA520', 'FF69B4', 'FF6347', '800080', 'FFD700']
-}
-
 
   // Состояние активной палитры цветов и массив квадратов
   const [activeColorPalette, setActiveColorPalette] = useState<string[]>(colorPalettes.neon);
@@ -66,7 +54,9 @@ const Intro: FC = () => {
     return elementsArray[Math.round(Math.random() * (elementsArray.length-1))] as HTMLElement;
   }
 
-  const letterrEffect = () => {
+  const characters = "Hi, I'm Rustam,web developer";
+
+  /* const letterrEffect = () => {
 
     const characters = "Hi, I'm Rustam,web developer".split("");
 
@@ -79,7 +69,7 @@ const Intro: FC = () => {
       }
       letter.classList.add('intro_header_letter');
 
-      if (char === 'R') {
+      if (char === 'R' || char === 'Р') {
         letter.classList.add('intro_header_letter-main');
         letter.dataset.aos="letter-animation";
         letter.dataset.aosDuration="800";
@@ -100,14 +90,10 @@ const Intro: FC = () => {
         thirdLine.current?.append(letter);
       }
     });
-  }
+  } */
 
   // useEffect для инициализации заголовков при монтировании компонента
-  useEffect(() => {
-
-    letterrEffect()
-
-  }, []);
+  useEffect(() => letterrEffect(characters, firstLine, secondLine, thirdLine), []);
 
 
   // useEffect для инициализации массива квадратов при монтировании компонента
@@ -140,7 +126,7 @@ const Intro: FC = () => {
         <h1 ref={firstLine} className="intro_header intro_header_first-line"></h1>
         <h1 ref={secondLine} className="intro_header intro_header_second-line"></h1>
         <h1 ref={thirdLine} className="intro_header intro_header_third-line"></h1>
-        <p data-aos="fade-down" data-aos-duration="500" data-aos-delay="2900" className="text-muted intro_text">Senior Front-End Developer / Ex-Freelancer</p>
+        <p data-aos="fade-down" data-aos-duration="500" data-aos-delay="2900" className="text-muted intro_text">Frontend Developer / Entrepreneur</p>
         <div className="intro_contact" data-aos="fade-down" data-aos-duration="800" data-aos-delay="3000">
           <a href="#contact"><button className="animated-button intro_contact-button">Reach me</button></a>
         </div>
