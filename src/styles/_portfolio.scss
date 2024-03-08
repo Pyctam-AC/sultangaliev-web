@@ -1,6 +1,6 @@
 .portfolio-section {
   padding: 2rem 0;
-  
+
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -11,6 +11,20 @@
   text-align: justify;
   padding: 0 1rem;
   margin-bottom: 2rem;
+
+  &_contact {
+    margin-top: .5rem;
+    display: flex;
+
+    &__logo {
+      margin-right: .5rem;
+      width: 2rem;
+      height: 2rem;
+    }
+
+  }
+
+
 }
 
 .project-cards {
@@ -72,6 +86,8 @@
   }
 }
 
+
+
 @media (max-width: 830px) {
   .portfolio-section {
     padding: 0;
@@ -109,7 +125,7 @@
 @media (max-width: 425px) {
   .portfolio {
     justify-content: flex-end;
-    
+
     &_heading {
       height: auto;
       margin-bottom: 2rem;

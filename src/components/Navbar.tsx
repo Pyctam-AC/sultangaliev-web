@@ -46,7 +46,7 @@ const Navbar:FC = () => {
         </a>
         <a href="#portfolio" data-name="work" className="main-menu_navigation_item">
           <img src={PortfolioIcon} />
-          <p>Work</p>
+          <p>Portfolio</p>
         </a>
         {/* <a href="#contact" data-name="contact" className="main-menu_navigation_item">
           <img src={LetterIcon} />
@@ -55,7 +55,7 @@ const Navbar:FC = () => {
       </div>
       <div className="main-menu_links">
         <div className="main-menu_links_item">
-          <a href="https://github.com/arseniypom" target="_blank" rel="noreferrer">
+          <a href="https://github.com/Pyctam-AC" target="_blank" rel="noreferrer" title="My GitHub">
             <div className="hexagon github-link">
               <img src={GithubIcon} />
             </div>

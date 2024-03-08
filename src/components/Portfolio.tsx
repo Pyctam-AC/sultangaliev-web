@@ -5,6 +5,7 @@ import Heading from './Heading';
 import homebuddy from '../images/projects-screenshots/homebuddy.svg';
 import indiepub from '../images/projects-screenshots/indiepub.svg';
 import vtbApi from '../images/projects-screenshots/vtb_api.svg';
+import telegram from '../images/telegram-pngegg.png'
 
 const myWorks = [
   {
@@ -41,7 +42,14 @@ const Portfolio:FC = () => {
         <div className="portfolio_heading">
           <Heading text="My Portfolio" />
           <p>Here is a small gallery of my recent projects.</p>
-          <p>Interested to know more about my work? <a className="accent-link" href="#contact">Contact me!</a></p>
+          <p>Interested to know more about my work?
+            <div className="portfolio_heading_contact">
+              <a className="accent-link" href="https://t.me/pyctamAC" target="_blank">
+                <img className='portfolio_heading_contact__logo' src={telegram} />
+                Contact me!
+              </a>
+            </div>
+          </p>
         </div>
         <div className="project-cards">
           {
