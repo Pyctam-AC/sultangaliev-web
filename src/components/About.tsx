@@ -8,7 +8,7 @@ const About:FC = () => {
       <div className="about">
         <div className="about_text">
           <Heading text="About Me" />
-          <p>Hello! My name is Arseniy Pomazkov and I am a Senior Frontend Developer currently based in London, UK 🇬🇧</p>
+          <p>Hello! My name is Rustam Sultangaliev and I am a Frontend Developer. And this page is about me.</p>
           <p>I specialize in building good-looking and reliable front-end (and occasionally back-end) for different services and applications.</p>
         </div>
         <div className="about_img">

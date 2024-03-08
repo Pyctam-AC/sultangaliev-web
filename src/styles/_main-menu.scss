@@ -113,7 +113,7 @@
 
       position: relative;
 
-      svg {
+      img {
         filter: invert(99%) sepia(1%) saturate(533%) hue-rotate(5deg) brightness(115%) contrast(100%);
         width: 1.2rem;
         height: 1.3rem;
@@ -168,7 +168,7 @@
 
     .hexagon {
       position: relative;
-      width: 20px; 
+      width: 20px;
       height: 11.55px;
       background-color: #2d2d2d;
       margin: 5.77px 0;
@@ -188,7 +188,7 @@
         width: 13px;
         height: 13px;
     }
-    
+
     .hexagon:before,
     .hexagon:after {
       content: "";
