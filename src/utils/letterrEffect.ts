@@ -1,4 +1,4 @@
-const letterrEffect = (characters: string, firstLine: HTMLHeadingElement, secondLine: HTMLHeadingElement, thirdLine: HTMLHeadingElement) => {
+const letterrEffect = (characters: string, /* firstLine: HTMLHeadingElement, secondLine: HTMLHeadingElement, thirdLine: HTMLHeadingElement */) => {
 
   characters.split('').forEach((char, i) => {
     const letter = document.createElement('span');
@@ -22,13 +22,13 @@ const letterrEffect = (characters: string, firstLine: HTMLHeadingElement, second
 
     letter.dataset.aosDelay=`${i * 100}`;
 
-    if (i < 3) {
+    /* if (i < 3) {
       firstLine.current?.append(letter);
     } else if (i < 15) {
       secondLine.current?.append(letter);
     } else if (i < 28) {
       thirdLine.current?.append(letter);
-    }
+    } */
   });
 }
 

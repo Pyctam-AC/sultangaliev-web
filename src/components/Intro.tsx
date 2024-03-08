@@ -3,7 +3,7 @@
 import { FC, MouseEventHandler, useCallback, useEffect, useRef, useState } from "react";
 
 import scrollDownImg from '../images/scroll-down.png';
-import letterrEffect from "../utils/letterrEffect";
+//import letterrEffect from "../utils/letterrEffect";
 import colorPalettes from "../utils/colorPalettes";
 
 const Intro: FC = () => {
@@ -56,7 +56,7 @@ const Intro: FC = () => {
 
   const characters = "Hi, I'm Rustam,web developer";
 
-  /* const letterrEffect = () => {
+  const letterrEffect = () => {
 
     const characters = "Hi, I'm Rustam,web developer".split("");
 
@@ -90,10 +90,10 @@ const Intro: FC = () => {
         thirdLine.current?.append(letter);
       }
     });
-  } */
+  }
 
   // useEffect для инициализации заголовков при монтировании компонента
-  useEffect(() => letterrEffect(characters, firstLine, secondLine, thirdLine), []);
+  useEffect(() => letterrEffect(/* characters, firstLine, secondLine, thirdLine */), []);
 
 
   // useEffect для инициализации массива квадратов при монтировании компонента
