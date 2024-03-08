@@ -18,7 +18,7 @@ const Intro: FC = () => {
   const thirdLine = useRef<HTMLHeadingElement>(null);
 
   // Состояние активной палитры цветов и массив квадратов
-  const [activeColorPalette, setActiveColorPalette] = useState<string[]>(colorPalettes.neon);
+  const [activeColorPalette] = useState<string[]>(colorPalettes.neon);
   const [squaresArray, setSquaresArray] = useState<JSX.Element[]>([]);
 
   // Обработчик события наведения мыши на квадрат
@@ -54,7 +54,7 @@ const Intro: FC = () => {
     return elementsArray[Math.round(Math.random() * (elementsArray.length-1))] as HTMLElement;
   }
 
-  const characters = "Hi, I'm Rustam,web developer";
+  //const characters = "Hi, I'm Rustam,web developer";
 
   const letterrEffect = () => {
 
