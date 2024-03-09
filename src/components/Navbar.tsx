@@ -26,14 +26,13 @@ const Navbar:FC = () => {
       </div>
       <div onClick={() => setNavbarActive(false)} className="main-menu_burger-background"></div>
       <div className="main-menu_top">
-        <a className="logo" href="/">
+        <a className="logo" href="#home">
           <div className="main-menu_top_img"></div>
         </a>
       </div>
       <div className="main-menu_navigation">
         <a href="#home" data-name="home" className="main-menu_navigation_item">
           <img src={HomeIcon} />
-         {/* <HomeIcon /> */}
           <p>Home</p>
         </a>
         <a href="#about" data-name="about" className="main-menu_navigation_item">
