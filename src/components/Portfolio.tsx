@@ -43,12 +43,12 @@ const Portfolio:FC = () => {
           <Heading text="My Portfolio" />
           <p>Here is a small gallery of my recent projects.</p>
           <p>Interested to know more about my work?
-            <div className="portfolio_heading_contact">
+            <span className="portfolio_heading_contact">
               <a className="accent-link" href="https://t.me/pyctamAC" target="_blank">
                 <img className='portfolio_heading_contact__logo' src={telegram} />
                 Contact me!
               </a>
-            </div>
+            </span>
           </p>
         </div>
         <div className="project-cards">

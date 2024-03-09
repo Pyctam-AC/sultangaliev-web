@@ -3,14 +3,13 @@
 import { FC, MouseEventHandler, useCallback, useEffect, useRef, useState } from "react";
 
 import scrollDownImg from '../images/scroll-down.png';
-//import letterrEffect from "../utils/letterrEffect";
 import colorPalettes from "../utils/colorPalettes";
 
 const Intro: FC = () => {
 
   // Используем useRef для получения ссылок на DOM элементы
-  const introScreen = useRef<HTMLDivElement>(null);
-  const squaresBoard = useRef<HTMLDivElement>(null);
+  const introScreen: any = useRef();
+  const squaresBoard: any = useRef();
 
   // Инициализируем useRef с типом соответствующего DOM элемента
   const firstLine = useRef<HTMLHeadingElement>(null);
@@ -33,7 +32,7 @@ const Intro: FC = () => {
   const setColor = useCallback(
     (target: HTMLElement, timer: number = 0) : void => {
       const getRandomColor = () => {
-        const colorIndex: number = Math.round(Math.random() * (activeColorPalette.length - 1));
+        const colorIndex: number = Math.round(Math.random() * activeColorPalette.length);
         return activeColorPalette[colorIndex];
       }
 
@@ -53,8 +52,6 @@ const Intro: FC = () => {
   const getRandomElement = (elementsArray: NodeListOf<Element>) => {
     return elementsArray[Math.round(Math.random() * (elementsArray.length-1))] as HTMLElement;
   }
-
-  //const characters = "Hi, I'm Rustam,web developer";
 
   const letterrEffect = () => {
 
@@ -93,21 +90,22 @@ const Intro: FC = () => {
   }
 
   // useEffect для инициализации заголовков при монтировании компонента
-  useEffect(() => letterrEffect(/* characters, firstLine, secondLine, thirdLine */), []);
+  useEffect(() => letterrEffect(), []);
 
 
   // useEffect для инициализации массива квадратов при монтировании компонента
   useEffect(() => {
 
-    const introDivRect = introScreen.current?.getBoundingClientRect();
-    if (introDivRect) {
-      const squaresAmount = Math.floor((introDivRect.width ?? 0) * (introDivRect.height ?? 0) / (20*20));
-      const newSquaresArray: Array<JSX.Element> = [];
-      for (let i = 0; i < squaresAmount; i++) {
-        newSquaresArray.push(<div key={i} className="square" data-role="square"></div>);
-      }
-      setSquaresArray(newSquaresArray);
+  const introDivRect = introScreen.current.getBoundingClientRect();
+  const squaresAmount = Math.floor(introDivRect.width * introDivRect.height / (20*20));
+  const newSquaresArray: Array<JSX.Element> = [];
+  for (let i = 0; i < squaresAmount; i++) {
+    newSquaresArray.push(<div key={i} className="square" data-role="square"></div>)
+  }
 
+  (async () => {
+    try {
+      setSquaresArray(newSquaresArray);
       const squares = document.querySelectorAll('[data-role=square]');
       const intervalId = setInterval(() => {
         for (let i = 1; i < 8; i++) {
@@ -115,10 +113,14 @@ const Intro: FC = () => {
         }
       }, 600);
 
-      return () => clearInterval(intervalId);
+    } catch (error) {
+      if (typeof error === 'object' && error !== null) {
+        console.log(error.toString());
+      }
     }
-  }, [introScreen, setColor]);
+  })();
 
+}, [introScreen, setColor]);
 
   return (
     <section id="home" className="section intro-section">
@@ -128,7 +130,7 @@ const Intro: FC = () => {
         <h1 ref={thirdLine} className="intro_header intro_header_third-line"></h1>
         <p data-aos="fade-down" data-aos-duration="500" data-aos-delay="2900" className="text-muted intro_text">Frontend Developer / Entrepreneur</p>
         <div className="intro_contact" data-aos="fade-down" data-aos-duration="800" data-aos-delay="3000">
-          <a href="#contact"><button className="animated-button intro_contact-button">Reach me</button></a>
+          <a href="#portfolio"><button className="animated-button intro_contact-button">Reach me</button></a>
         </div>
         <div ref={squaresBoard} onMouseOver={squareMouseOverHandle} className="intro_board" id="board">
           {squaresArray}

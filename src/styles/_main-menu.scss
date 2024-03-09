@@ -138,7 +138,7 @@
         background-color: #2d2d2d;
         color: $accent-color;
       }
-      &:hover svg {
+      &:hover img {
         filter: invert(61%) sepia(98%) saturate(304%) hue-rotate(152deg) brightness(92%) contrast(92%);
         opacity: 0;
       }
