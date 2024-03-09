@@ -96,16 +96,15 @@ const Intro: FC = () => {
   // useEffect для инициализации массива квадратов при монтировании компонента
   useEffect(() => {
 
-  const introDivRect = introScreen.current.getBoundingClientRect();
-  const squaresAmount = Math.floor(introDivRect.width * introDivRect.height / (20*20));
-  const newSquaresArray: Array<JSX.Element> = [];
-  for (let i = 0; i < squaresAmount; i++) {
-    newSquaresArray.push(<div key={i} className="square" data-role="square"></div>)
-  }
-
-  (async () => {
-    try {
+    const introDivRect = introScreen.current?.getBoundingClientRect();
+    if (introDivRect) {
+      const squaresAmount = Math.floor((introDivRect.width ?? 0) * (introDivRect.height ?? 0) / (20*20));
+      const newSquaresArray: Array<JSX.Element> = [];
+      for (let i = 0; i < squaresAmount; i++) {
+        newSquaresArray.push(<div key={i} className="square" data-role="square"></div>);
+      }
       setSquaresArray(newSquaresArray);
+
       const squares = document.querySelectorAll('[data-role=square]');
       const intervalId = setInterval(() => {
         for (let i = 1; i < 8; i++) {
@@ -113,14 +112,9 @@ const Intro: FC = () => {
         }
       }, 600);
 
-    } catch (error) {
-      if (typeof error === 'object' && error !== null) {
-        console.log(error.toString());
-      }
+      return () => clearInterval(intervalId);
     }
-  })();
-
-}, [introScreen, setColor]);
+  }, [introScreen, setColor]);
 
   return (
     <section id="home" className="section intro-section">
