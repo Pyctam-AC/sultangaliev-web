@@ -1,11 +1,17 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { FC, MouseEventHandler, useCallback, useEffect, useRef, useState } from "react";
+import { FC, MouseEventHandler, useCallback, useContext, useEffect, useRef, useState } from "react";
 
 import scrollDownImg from '../images/scroll-down.png';
 import colorPalettes from "../utils/colorPalettes";
 
+import { textIntro, textCare, textContactMe } from "../utils/textsPage";
+import LangContexts from "../contexts/LangContexts";
+
 const Intro: FC = () => {
+
+  const lang = useContext(LangContexts);
 
   // Используем useRef для получения ссылок на DOM элементы
   const introScreen: any = useRef();
@@ -53,9 +59,9 @@ const Intro: FC = () => {
     return elementsArray[Math.round(Math.random() * (elementsArray.length-1))] as HTMLElement;
   }
 
-  const letterrEffect = () => {
+  const characters = textIntro[lang].text.split("");
 
-    const characters = "Hi, I'm Rustam,web developer".split("");
+  const letterrEffect = () => {
 
     characters.forEach((char, i) => {
       const letter = document.createElement('span');
@@ -79,24 +85,39 @@ const Intro: FC = () => {
 
       letter.dataset.aosDelay=`${i * 100}`;
 
-      if (i < 3) {
+      if (lang === 'RU') {
+        if (i < 7) {
+          firstLine.current?.append(letter);
+        } else if (i < 17) {
+          secondLine.current?.append(letter);
+        } else if (i < 33) {
+          thirdLine.current?.append(letter);
+        }
+      } else {
+        if (i < 3) {
         firstLine.current?.append(letter);
-      } else if (i < 15) {
+        } else if (i < 15) {
         secondLine.current?.append(letter);
-      } else if (i < 28) {
-        thirdLine.current?.append(letter);
+        } else if (i < 28) {
+          thirdLine.current?.append(letter);
+        }
       }
     });
   }
 
   // useEffect для инициализации заголовков при монтировании компонента
-  useEffect(() => letterrEffect(), []);
+  useEffect(() => {
+    letterrEffect()
+    }, [lang]
+  );
+
 
 
   // useEffect для инициализации массива квадратов при монтировании компонента
   useEffect(() => {
 
     const introDivRect = introScreen.current?.getBoundingClientRect();
+
     if (introDivRect) {
       const squaresAmount = Math.floor((introDivRect.width ?? 0) * (introDivRect.height ?? 0) / (20*20));
       const newSquaresArray: Array<JSX.Element> = [];
@@ -114,7 +135,7 @@ const Intro: FC = () => {
 
       return () => clearInterval(intervalId);
     }
-  }, [introScreen, setColor]);
+  }, [lang]);
 
   return (
     <section id="home" className="section intro-section">
@@ -122,9 +143,9 @@ const Intro: FC = () => {
         <h1 ref={firstLine} className="intro_header intro_header_first-line"></h1>
         <h1 ref={secondLine} className="intro_header intro_header_second-line"></h1>
         <h1 ref={thirdLine} className="intro_header intro_header_third-line"></h1>
-        <p data-aos="fade-down" data-aos-duration="500" data-aos-delay="2900" className="text-muted intro_text">Frontend Developer / Entrepreneur</p>
+        <p data-aos="fade-down" data-aos-duration="500" data-aos-delay="2900" className="text-muted intro_text">{textCare[lang].text}</p>
         <div className="intro_contact" data-aos="fade-down" data-aos-duration="800" data-aos-delay="3000">
-          <a href="#portfolio"><button className="animated-button intro_contact-button">Reach me</button></a>
+          <a href="#portfolio"><button className="animated-button intro_contact-button">{textContactMe[lang].text}</button></a>
         </div>
         <div ref={squaresBoard} onMouseOver={squareMouseOverHandle} className="intro_board" id="board">
           {squaresArray}
