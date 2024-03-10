@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useContext } from 'react';
 import Heading from './Heading';
 
 import skillsImg from '../images/code4.png';
@@ -24,16 +24,21 @@ import expressImg from '../images/skills-icons/express.png';
 import mongodbImg from '../images/skills-icons/mongodb.png';
 //import nestjsImg from '../images/skills-icons/nestjs.png';
 import appscript from '../images/skills-icons/apps_script_1x_24dp.png'
+import LangContexts from '../contexts/LangContexts';
+import { headingText, skillsText } from '../utils/textsPage';
 
 
 const Skills:FC = () => {
+
+  const lang = useContext(LangContexts);
+
   return (
     <section className="section skills-section" id="skills" >
       <div className="skills">
         <div className="skills_info">
           <div className="skills_heading">
-            <Heading text="My Skills"/>
-            <p className="skills_description">In building JavaScript applications, I'm equipped with different tools, which I can choose from depending on the needs of the particular project. I keep my knowledge up-to-date and always seek for better solutions.</p>
+            <Heading text={headingText[lang].skills}/>
+            <p className="skills_description">{skillsText[lang].par_1}</p>
           </div>
           <div className="skills_cards">
             <div className="skills_card" data-aos="flip-up" data-aos-delay="100" data-aos-duration="1000" data-aos-once="true">

@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useContext } from "react";
 import ProjectCard from "./ProjectCard";
 import Heading from './Heading';
 
@@ -6,6 +6,8 @@ import homebuddy from '../images/projects-screenshots/homebuddy.svg';
 import indiepub from '../images/projects-screenshots/indiepub.svg';
 import vtbApi from '../images/projects-screenshots/vtb_api.svg';
 import telegram from '../images/telegram-pngegg.png'
+import LangContexts from "../contexts/LangContexts";
+import { headingText, portfolioText } from "../utils/textsPage";
 
 const myWorks = [
   {
@@ -36,17 +38,19 @@ const myWorks = [
 
 const Portfolio:FC = () => {
 
+  const lang = useContext(LangContexts);
+
   return (
     <section className="section portfolio-section" id="portfolio">
       <div className="portfolio">
         <div className="portfolio_heading">
-          <Heading text="My Portfolio" />
-          <p>Here is a small gallery of my recent projects.</p>
-          <p>Interested to know more about my work?
+          <Heading text={headingText[lang].portfolio} />
+          <p>{portfolioText[lang].par_1}</p>
+          <p>{portfolioText[lang].par_2}
             <span className="portfolio_heading_contact">
               <a className="accent-link" href="https://t.me/pyctamAC" target="_blank">
                 <img className='portfolio_heading_contact__logo' src={telegram} />
-                Contact me!
+                {portfolioText[lang].rich_me}
               </a>
             </span>
           </p>

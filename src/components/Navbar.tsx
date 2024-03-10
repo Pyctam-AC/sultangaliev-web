@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import {FC, useRef, useState} from "react";
+import {FC, useContext, useRef, useState} from "react";
 
 import HomeIcon from '../images/menu-icons/home.svg';
 import ToolsIcon from '../images/menu-icons/tools.svg';
@@ -7,11 +7,16 @@ import UserIcon from '../images/menu-icons/user.svg';
 import PortfolioIcon from '../images/menu-icons/portfolio.svg';
 //import LetterIcon from '../images/menu-icons/letter.svg';
 import GithubIcon from '../images/menu-icons/github.svg';
+import { navBar } from "../utils/textsPage";
+import LangContexts from "../contexts/LangContexts";
 //import LinkedinIcon from '../images/menu-icons/linkedin.svg';
 //import FacebookIcon from '../images/menu-icons/facebook.svg';
 //import InstagramIcon from '../images/menu-icons/instagram.svg';
 
 const Navbar:FC = () => {
+
+  const lang = useContext(LangContexts);
+
   const navbar: any = useRef(null)
 
   const [isNavbarActive, setNavbarActive] = useState(false)
@@ -33,19 +38,19 @@ const Navbar:FC = () => {
       <div className="main-menu_navigation">
         <a href="#home" data-name="home" className="main-menu_navigation_item">
           <img src={HomeIcon} />
-          <p>Home</p>
+          <p>{navBar[lang].home}</p>
         </a>
         <a href="#about" data-name="about" className="main-menu_navigation_item">
           <img src={UserIcon} />
-          <p>About</p>
+          <p>{navBar[lang].about}</p>
         </a>
         <a href="#skills" data-name="skills" className="main-menu_navigation_item">
           <img src={ToolsIcon} />
-          <p>Skills</p>
+          <p>{navBar[lang].skills}</p>
         </a>
         <a href="#portfolio" data-name="work" className="main-menu_navigation_item">
           <img src={PortfolioIcon} />
-          <p>Portfolio</p>
+          <p>{navBar[lang].portfoloio}</p>
         </a>
         {/* <a href="#contact" data-name="contact" className="main-menu_navigation_item">
           <img src={LetterIcon} />
@@ -54,11 +59,11 @@ const Navbar:FC = () => {
       </div>
       <div className="main-menu_links">
         <div className="main-menu_links_item">
-          <a href="https://github.com/Pyctam-AC" target="_blank" rel="noreferrer" title="My GitHub">
+          <a href="https://github.com/Pyctam-AC" target="_blank" rel="noreferrer" title={navBar[lang].github}>
             <div className="hexagon github-link">
               <img src={GithubIcon} />
             </div>
-            <p>GitHub</p>
+            <p>{navBar[lang].github}</p>
           </a>
         </div>
         {/* <div className="main-menu_links_item">

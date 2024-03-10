@@ -29,7 +29,7 @@ body {
 body::-webkit-scrollbar {
   width: .3rem;
 }
- 
+
 body::-webkit-scrollbar-thumb {
   background-color: $accent-color;
   height: 1rem;
@@ -92,6 +92,7 @@ code {
 }
 
 .section_heading {
+  width: 100%;
   font-size: 4rem;
   font-weight: 500;
   margin-bottom: 3rem;
@@ -200,6 +201,41 @@ code {
     margin-bottom: .8rem;
   }
 }
+.lang-btn {
+  width: 4rem;
+  height: 3.5rem;
+  background-color: $background_color;
+  border: 1px solid $accent-color;
+  color: $accent-color;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  cursor: pointer;
+
+  position: absolute;
+  right: 10rem;
+  top: -1rem;
+  z-index: 9;
+
+  transition: .3s ease;
+
+  p {
+    font-size: .9rem;
+    margin-bottom: .6rem;
+    transition: margin-bottom .3s ease;
+  }
+
+  &:hover {
+    top: -.5rem;
+    background-color: $accent-color;
+    color: #000;
+  }
+  &:hover p {
+    margin-bottom: .8rem;
+  }
+}
 
 .accent-link {
   color: $accent-color;
@@ -208,4 +244,14 @@ code {
     text-decoration-line: underline;
     text-underline-offset: 3px;
   }
+}
+
+.footer {
+  padding-left: 1rem;
+  padding-bottom: 1rem;
+
+  p {
+    font-size: .9rem;
+  }
+
 }
