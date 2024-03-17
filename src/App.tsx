@@ -5,7 +5,7 @@ import './styles/index.scss'
 import Navbar from "./components/Navbar";
 import LangChangeBtn from "./components/LangChangeBtn";
 import ResumeLink from "./components/ResumeLink";
-import Intro from "./components/Intro";
+import {Intro} from "./components/HeadingIntro/page/Intro";
 const About = React.lazy(() => import('./components/About'));
 const Skills = React.lazy(() => import('./components/Skills'));
 const Portfolio = React.lazy(() => import('./components/Portfolio'));
