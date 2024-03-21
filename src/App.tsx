@@ -1,4 +1,4 @@
-import React, { FC, Suspense, useState } from "react"
+import React, { FC, Suspense, useEffect, useState } from "react"
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import './styles/index.scss'
@@ -22,8 +22,16 @@ const App:FC = () => {
   const [lang, setLang] = useState('RU');
 
   const LangChange = () => {
-    setLang(lang === 'EN' ? 'RU' : 'EN')
+    setLang(lang === 'EN' ? 'RU' : 'EN');
+    localStorage.setItem('language', lang === 'EN' ? 'RU' : 'EN');
   }
+
+  useEffect (() => {
+    const Lang = localStorage.getItem('language')
+    if (Lang) {
+      setLang(Lang)
+    }
+  }, [])
 
   return (
     <LangContexts.Provider value={lang}>

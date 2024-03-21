@@ -13,35 +13,56 @@
   justify-content: center;
 
   &_header{
-    font-size: 6.3rem;
-    font-weight: normal;
-    line-height: $intro-header_line-height;
-    position: absolute;
-    left: $main-menu_width;
-    margin: 0 0 0 3rem;
+    height: min-content;
+    margin-left: 3rem;
+    margin-top: 15rem;
+    display: flex;
+    flex-direction: column;
+    z-index: 0;
+
+    &_line {
+      display: flex;
+    }
 
     &_first-line {
+      height: min-content;
       top: $intro-header_margin-top;
+      font-size: 6.3rem;
+      font-weight: normal;
+      line-height: 7.3rem;
+      left: $main-menu_width;
       padding-top: 1rem;
       z-index: 3;
       white-space: nowrap;
     }
     &_second-line {
+      height: min-content;
+      top: $intro-header_margin-top;
+      font-size: 6.3rem;
+      font-weight: normal;
+      line-height: 7rem;
+      left: $main-menu_width;
       top: calc(#{$intro-header_margin-top} + #{$intro-header_line-height} + .2rem);
       z-index: 2;
       white-space: nowrap;
     }
     &_third-line {
+      height: min-content;
+      top: $intro-header_margin-top;
+      font-size: 6.3rem;
+      font-weight: normal;
+      line-height: 7rem;
+      left: $main-menu_width;
       top: calc(#{$intro-header_margin-top} + #{$intro-header_line-height * 2} - .5rem);
       padding: 0 1rem 1rem 0;
       z-index: 1;
       white-space: nowrap;
-
       overflow: hidden;
     }
 
     &_letter {
       cursor: default;
+      padding-right: .5rem;
       animation-fill-mode: both;
       animation-iteration-count: 1;
 
@@ -75,7 +96,7 @@
     font-size: 0.8rem;
     background-color: #1d1d1d;
     position: absolute;
-    top: calc(#{$intro-header_margin-top} + #{$intro-header_line-height * 3} + .5rem);
+    top: calc(#{$intro-header_margin-top} + #{$intro-header_line-height * 3} + 2rem);
     left: $main-menu_width;
   }
   &_contact {
@@ -85,9 +106,10 @@
     left: $main-menu_width;
   }
   &_contact-button {
+    margin-top: 2rem;
     width: max-content;
     background-color: #1d1d1d;
-    padding: .7rem 1.4rem .5rem;
+    padding: .7rem 1.4rem 0.5rem;
   }
 
   &_board{
@@ -134,21 +156,60 @@
   }
 }
 
+@media (max-width: 1100px) {
+  .intro {
+    &_header {
+
+      &_first-line {
+        line-height: 4.7rem;
+        font-size: 4rem;
+      }
+      &_second-line {
+        top: calc(#{$intro-header_margin-top} + #{$intro-header_line-height} - 2rem);
+        line-height: 4.7rem;
+        font-size: 4rem;
+      }
+      &_third-line {
+        top: calc(#{$intro-header_margin-top} + #{$intro-header_line-height * 2} - .5rem);
+        line-height: 4.7rem;
+        font-size: 4rem;
+      }
+      &_letter {
+        cursor: default;
+        padding-right: .3rem;
+        animation-fill-mode: both;
+        animation-iteration-count: 1;
+      }
+
+      &_letter-main {
+        width: 4rem;
+        height: 4rem;
+      }
+    }
+  }
+}
+
+
 @media (max-width: 767px) {
   .intro {
     &_header {
       font-size: 4rem;
-      margin: 0 0 0 8%;
+      margin-top: 6rem;
       left: 0;
 
       &_first-line {
         top: $intro-header_margin-top--md;
+        font-size: 4.3rem;
       }
       &_second-line {
         top: calc(#{$intro-header_margin-top--md} + #{$intro-header_line-height--md} + .2rem);
+        line-height: 4.7rem;
+        font-size: 4.3rem;
       }
       &_third-line {
         top: calc(#{$intro-header_margin-top--md} + #{$intro-header_line-height--md * 2} - .5rem);
+        line-height: 4.7rem;
+        font-size: 4.3rem;
       }
 
       &_letter-main {
@@ -174,18 +235,24 @@
     }
   }
 }
-@media (max-width: 425px) {
+@media (max-width: 660px) {
   .intro {
     &_header {
-      font-size: 3rem;
+      margin-left: 1rem;
 
       &_first-line {
+        font-size: 3rem;
+        line-height: 3.3rem;
         top: $intro-header_margin-top--md;
       }
       &_second-line {
+        font-size: 3rem;
+        line-height: 3.3rem;
         top: calc(#{$intro-header_margin-top--md} + #{$intro-header_line-height--sm} + .2rem);
       }
       &_third-line {
+        font-size: 3rem;
+        line-height: 3.3rem;
         top: calc(#{$intro-header_margin-top--md} + #{$intro-header_line-height--sm * 2} - .5rem);
       }
 
@@ -205,10 +272,26 @@
     }
   }
 }
-@media (max-width: 374px) {
+@media (max-width: 466px) {
   .intro {
     &_header {
-      font-size: 2.5rem;
+
+
+      &_first-line {
+        font-size: 2.5rem;
+        line-height: 2.8rem;
+        top: $intro-header_margin-top--md;
+      }
+      &_second-line {
+        font-size: 2.5rem;
+        line-height: 2.8rem;
+        top: calc(#{$intro-header_margin-top--md} + #{$intro-header_line-height--sm} + .2rem);
+      }
+      &_third-line {
+        font-size: 2.5rem;
+        line-height: 2.8rem;
+        top: calc(#{$intro-header_margin-top--md} + #{$intro-header_line-height--sm * 2} - .5rem);
+      }
 
       &_letter-main {
         width: 2.5rem;
@@ -325,6 +408,25 @@
 }
 
 .display {
+  display: inline-block;
+}
+
+.space {
+  width: 2.5rem;
+  display: inline;
+}
+@media (max-width: 1100px) {
+  .space {
+    width: 1.5rem;
+  }
+}
+@media (max-width: 466px) {
+  .space {
+    width: .5rem;
+  }
+}
+
+.letter {
   display: inline-block;
 }
 

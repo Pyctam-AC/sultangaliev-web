@@ -1,82 +1,87 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { FC, useContext, useEffect, useRef } from 'react';
+import { FC, useContext, useEffect, useState } from 'react';
 import LangContexts from '../../../../contexts/LangContexts';
+import { textIntro } from '../data';
 
-interface IHeadingfProps {
-  text: string;
-}
-
-const HeadingIntro: FC<IHeadingfProps> = ({ text }) => {
+const HeadingIntro: FC = () => {
 
   const lang = useContext(LangContexts);
 
-  // Инициализируем useRef с типом соответствующего DOM элемента
-  const firstLine = useRef<HTMLHeadingElement>(null);
-  const secondLine = useRef<HTMLHeadingElement>(null);
-  const thirdLine = useRef<HTMLHeadingElement>(null);
+  const [change, setChange] = useState(false);
 
-  //const [first, setFirst] = useState()
+  const firstLine = change ? null : textIntro[lang].first_Line.split('');
+  const secondLine = change ? null : textIntro[lang].second_Line.split('');
+  const thirdLine = change ? null : textIntro[lang].third_Line.split('');
 
-  //const heading: any = useRef();
-  const characters = text.split("");
+  useEffect (() => {
+    setChange(true);
+    setTimeout(()=> {
+      setChange(false)
+    }, 100)
+  }, [lang])
 
-  const letterrEffect = (letter:string[] | undefined) =>{
-    return letter?.forEach((char: string, i: number) => {
-      const letter = document.createElement("span");
-      if (char === " ") {
-        letter.style.display = "inline";
-      } else {
-        letter.style.display = "inline-block";
-      }
-      letter.classList.add("intro_header_letter");
-
-      if (char === "R" || char === "Р") {
-        letter.classList.add("intro_header_letter-main");
-        letter.dataset.aos = "letter-animation";
-        letter.dataset.aosDuration = "800";
-      } else {
-        letter.classList.add("intro_header_letter-default");
-        letter.innerText = char;
-        letter.dataset.aos = "zoom-in";
-        letter.dataset.aosDuration = "200";
-      }
-
-      letter.dataset.aosDelay = `${i * 100}`;
-
-      if (lang === "RU") {
-        if (i < 7) {
-          //firstLine.current?.removeChild(letter);
-          firstLine.current?.append(letter);
-        } else if (i < 17) {
-          secondLine.current?.append(letter);
-        } else if (i < 33) {
-          thirdLine.current?.append(letter);
-        }
-      } else {
-        if (i < 3) {
-          firstLine.current?.append(letter);
-        } else if (i < 15) {
-          secondLine.current?.append(letter);
-        } else if (i < 28) {
-          thirdLine.current?.append(letter);
-        }
-      }
-    });
+  const classLetter = (char: string) => char === ' ' ? "space" : "letter";
+  const letterImg = (char: string) => {
+    if (char === "R" || char === "Р") {
+      return 'intro_header_letter-main'
+    }
+    else {
+      return "intro_header_letter-default"
+    }
   }
 
-  // useEffect для инициализации заголовков при монтировании компонента
-  useEffect(() => {
-
-   letterrEffect(characters);
-
-  }, [lang]);
-
   return (
-  <header>
-    <h1 ref={firstLine} className="intro_header intro_header_first-line"></h1>
-    <h1 ref={secondLine} className="intro_header intro_header_second-line"></h1>
-    <h1 ref={thirdLine} className="intro_header intro_header_third-line"></h1>
+  <header className='intro_header'>
+    <div className='intro_header_line'>
+    {
+      firstLine?.map((letter, i) => {
+        return (
+          <h1
+            className={`intro_header_letter intro_header_first-line intro_header_letter-default ${classLetter(letter)}`}
+            data-aos="zoom-in"
+            data-aos-duration="200"
+            data-aos-delay={`${i * 200}`}
+          >
+            {letter}
+          </h1>
+        );
+      })
+    }
+    </div>
+    <div className='intro_header_line'>
+    {
+      secondLine?.map((letter, i) => {
+
+          return (
+            <h1
+              className={`intro_header_letter intro_header_second-line ${letterImg(letter)} ${classLetter(letter)}`}
+              data-aos="zoom-in"
+              data-aos-duration="200"
+              data-aos-delay={`${i * 150}`}
+            >
+              {letter === "R" || letter === "Р" ? " " : letter}
+            </h1>
+          )
+      })
+    }
+    </div>
+    <div className='intro_header_line'>
+    {
+      thirdLine?.map((letter, i) => {
+        return (
+          <h1
+            className={`intro_header_letter intro_header_second-line intro_header_letter-default ${classLetter(letter)}`}
+            data-aos="zoom-in"
+            data-aos-duration="200"
+            data-aos-delay={`${i * 100}`}
+          >
+            {letter}
+          </h1>
+        );
+      })
+    }
+    </div>
   </header>);
 };
 
