@@ -11,37 +11,42 @@
   box-sizing: border-box;
   display: flex;
   justify-content: center;
+  position: relative;
 
   &_header{
+    position: absolute;
     height: min-content;
-    margin-left: 3rem;
-    margin-top: 15rem;
+    top: 5rem;
+    left: 8rem;
     display: flex;
     flex-direction: column;
     z-index: 0;
 
     &_line {
+      position: relative;
+      width: min-content;
       display: flex;
     }
 
     &_first-line {
+      display: inline-block;
       height: min-content;
       top: $intro-header_margin-top;
       font-size: 6.3rem;
       font-weight: normal;
       line-height: 7.3rem;
-      left: $main-menu_width;
       padding-top: 1rem;
       z-index: 3;
       white-space: nowrap;
     }
     &_second-line {
+      display: inline-block;
       height: min-content;
-      top: $intro-header_margin-top;
+      top: 10rem;
       font-size: 6.3rem;
       font-weight: normal;
       line-height: 7rem;
-      left: $main-menu_width;
+
       top: calc(#{$intro-header_margin-top} + #{$intro-header_line-height} + .2rem);
       z-index: 2;
       white-space: nowrap;
@@ -52,7 +57,6 @@
       font-size: 6.3rem;
       font-weight: normal;
       line-height: 7rem;
-      left: $main-menu_width;
       top: calc(#{$intro-header_margin-top} + #{$intro-header_line-height * 2} - .5rem);
       padding: 0 1rem 1rem 0;
       z-index: 1;
@@ -195,7 +199,7 @@
     &_header {
       font-size: 4rem;
       margin-top: 6rem;
-      left: 0;
+      left: 2rem;
 
       &_first-line {
         top: $intro-header_margin-top--md;
@@ -219,7 +223,7 @@
     }
 
     &_text {
-      top: calc(#{$intro-header_margin-top--md} + #{$intro-header_line-height--md * 3} + 1rem);
+      top: calc(#{$intro-header_margin-top--md} + #{$intro-header_line-height--md * 3} + 3.5rem);
       margin-left: 8%;
       left: 0;
     }

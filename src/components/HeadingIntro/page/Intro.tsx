@@ -11,63 +11,63 @@ import LangContexts from "../../../contexts/LangContexts";
 import HeadingIntro from "./UI/HeadingIntro";
 
 export const Intro: FC = () => {
-
   const lang = useContext(LangContexts);
-
-  // Используем useRef для получения ссылок на DOM элементы
   const introScreen: any = useRef();
   const squaresBoard: any = useRef();
 
-  // Состояние активной палитры цветов и массив квадратов
   const [activeColorPalette] = useState<string[]>(colorPalettes.neon);
   const [squaresArray, setSquaresArray] = useState<JSX.Element[]>([]);
 
-  // Обработчик события наведения мыши на квадрат
   const squareMouseOverHandle: MouseEventHandler<HTMLDivElement> = (e) => {
     const target = e.target as HTMLDivElement;
     if (target.dataset.role === 'square') {
       setColor(target);
     }
-  }
+  };
 
-  // Функция установки цвета квадрата
   const setColor = useCallback(
-    (target: HTMLElement, timer: number = 0) : void => {
+    (target: HTMLElement, timer: number = 0): void => {
       const getRandomColor = () => {
-        const colorIndex: number = Math.round(Math.random() * activeColorPalette.length);
+        const colorIndex: number = Math.round(Math.random() * (activeColorPalette.length - 1));
         return activeColorPalette[colorIndex];
-      }
+      };
 
       setTimeout(() => {
-        if (target)
-        {target.style.backgroundColor = '#' + getRandomColor()}
+        if (target) {
+          target.style.backgroundColor = '#' + getRandomColor();
+        }
       }, timer);
 
       setTimeout(() => {
-        if (target)
-        {target.style.backgroundColor = '#1d1d1d'}
+        if (target) {
+          target.style.backgroundColor = '#1d1d1d';
+        }
       }, timer + 700);
     },
     [activeColorPalette]
-  )
+  );
 
   const getRandomElement = (elementsArray: NodeListOf<Element>) => {
-    return elementsArray[Math.round(Math.random() * (elementsArray.length-1))] as HTMLElement;
-  }
+    return elementsArray[Math.round(Math.random() * (elementsArray.length - 1))] as HTMLElement;
+  };
 
   // useEffect для инициализации массива квадратов при монтировании компонента
   useEffect(() => {
-
     const introDivRect = introScreen.current?.getBoundingClientRect();
 
     if (introDivRect) {
-      const squaresAmount = Math.floor((introDivRect.width ?? 0) * (introDivRect.height ?? 0) / (20*20));
+      const squaresAmount = Math.floor((introDivRect.width ?? 0) * (introDivRect.height ?? 0) / (20 * 20));
       const newSquaresArray: Array<JSX.Element> = [];
       for (let i = 0; i < squaresAmount; i++) {
         newSquaresArray.push(<div key={i} className="square" data-role="square"></div>);
       }
       setSquaresArray(newSquaresArray);
+    }
+  }, [lang]);
 
+  // Новый useEffect для инициализации мерцания после загрузки squaresArray
+  useEffect(() => {
+    if (squaresArray.length > 0) {
       const squares = document.querySelectorAll('[data-role=square]');
       const intervalId = setInterval(() => {
         for (let i = 1; i < 8; i++) {
@@ -77,7 +77,7 @@ export const Intro: FC = () => {
 
       return () => clearInterval(intervalId);
     }
-  }, [lang]);
+  }, [squaresArray, setColor]);
 
   return (
     <section id="home" className="section intro-section">
@@ -94,8 +94,8 @@ export const Intro: FC = () => {
           <img src={scrollDownImg} className="" alt="scroll down" />
           <span></span>
         </a>
+
       </div>
     </section>
-  )
-}
-
+  );
+};
