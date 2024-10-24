@@ -3,6 +3,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
 .about {
@@ -11,6 +12,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 
   &_text {
     max-width: 30rem;
@@ -79,7 +81,7 @@
         margin-bottom: .5rem;
       }
     }
-    
+
     &_img {
       max-width: 60%;
     }

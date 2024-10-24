@@ -34,11 +34,14 @@
   flex-wrap: wrap;
   width: 100%;
 
+
   &_item {
     width: 25%;
     height: 15rem;
     position: relative;
     background-color: black;
+    border-radius: 5%;
+    margin: .5rem;
 
     &_img {
       width: 100%;
@@ -48,14 +51,15 @@
       display: block;
       transition: .5s ease;
       backface-visibility: hidden;
+      border-radius: 5%;
     }
-    &_img.hb {
-      background-color: #2f54eb;
+    &_img.erc {
+      background-color: #e6ebf5;
       object-fit: contain;
       padding: 0 2rem;
     }
-    &_img.indiepub {
-      background-color: #171717;
+    &_img.poidem {
+      background-color: #eaeff0;
       object-fit: contain;
       padding: 0 2rem;
     }
@@ -69,11 +73,13 @@
       transform: translate(-50%, -50%);
       -ms-transform: translate(-50%, -50%);
       text-align: center;
+      border-radius: 5%;
 
       h1 {
         font-size: 2rem;
         letter-spacing: 2px;
         line-height: 100%;
+        margin-bottom: .4rem;
       }
     }
 

@@ -1,0 +1,73 @@
+.circle-container {
+  position: absolute; // Фиксированное позиционирование
+  bottom: 1rem; // Отступ снизу
+  left: 50%; // Центрирование по горизонтали
+  transform: translateX(-50%); // Центрирование по горизонтали
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  margin-bottom: 1.5rem;
+
+  &:hover .arrow {
+    opacity: 1;
+    transform: rotate(45deg);
+  }
+
+}
+
+.circle {
+  display: block;
+  overflow: visible;
+  width: 5rem; // Ширина круга
+  height: 5rem; // Высота круга
+  animation: rotation 13s infinite linear; // Анимация вращения
+  font-size: 20px; // Размер текста
+  fill: #fff; // Цвет текста
+}
+
+.circle path {
+  fill: none; // Не заполнять путь
+  stroke-width: 2; // Толщина линии круга
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg); // Начальный угол
+  }
+  100% {
+    transform: rotate(360deg); // Конечный угол
+  }
+}
+
+.scroll-text {
+  font-size: 20,px;
+  text-align: start;
+  font-weight: 400;
+}
+
+.circle-container {
+  border-radius: 50%;
+  border: solid #FFF 1px;
+  width: 4rem;
+  height: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity .5s ease;
+  color: #FFF;
+}
+
+
+.arrow {
+  position: absolute;
+  bottom: 40%; // Положение стрелки относительно контейнера
+  width: 20px;
+  height: 20px;
+  border-right: 2px solid white;
+  border-bottom: 2px solid white;
+  opacity: 0;
+  transition: all 0.3s ease;
+  transform: rotate(0deg); // Начальная позиция
+}

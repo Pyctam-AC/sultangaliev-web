@@ -1,44 +1,85 @@
 import { FC, useContext } from "react";
 import ProjectCard from "./ProjectCard";
 import Heading from './Heading';
-
-import homebuddy from '../images/projects-screenshots/homebuddy.svg';
-import indiepub from '../images/projects-screenshots/indiepub.svg';
-import vtbApi from '../images/projects-screenshots/vtb_api.svg';
+import erc from '../images/projects-screenshots/erc_logo.png';
+import poidem from '../images/projects-screenshots/poidem-bank-logo.svg'
 import telegram from '../images/telegram-pngegg.png'
 import LangContexts from "../contexts/LangContexts";
 import { headingText, portfolioText } from "../utils/textsPage";
 
-const myWorks = [
+
+interface LanguageText {
+  text: string;
+}
+
+interface Project {
+  id: number;
+  image: string;
+  title: {
+    EN: LanguageText;
+    RU: LanguageText;
+  };
+  description: {
+    EN: LanguageText;
+    RU: LanguageText;
+  };
+  url: string;
+  className: string;
+}
+
+type Language = 'EN' | 'RU';
+
+
+const myWorks: Project[] = [
   {
     id: 1,
-    image: homebuddy,
-    title: 'Homebuddy',
-    description: "Home Improvement Helper",
-    url:'https://www.homebuddy.com/',
-    className: 'hb',
+    image: erc,
+    title: {
+      EN: {
+        text: "ERC"
+      },
+      RU: {
+        text: "ЕРЦ"
+      }
+    },
+    description: {
+      EN: {
+        text: "Unified Settlement Center: a leading billing operator in Yekaterinburg for housing and utility services"
+      },
+      RU: {
+        text: "«Единый Расчетный Центр» — ведущий биллинговый оператор города Екатеринбурга в сфере начислений за жилищно-коммунальные и иные услуги"
+      }
+    },
+    url:'https://abonent.erc-ekb.ru/',
+    className: 'erc',
   },
   {
     id: 2,
-    image: vtbApi,
-    title: 'VTB API',
-    description: "FinTech: API Portal for bank services",
-    url:'https://developers.vtb.ru/',
-    className: 'vtb',
-  },
-  {
-    id: 3,
-    image: indiepub,
-    title: 'Indiepub',
-    description: 'Innovative text-to-audiobook converter',
-    url:'https://indiepub.ai/',
-    className: 'indiepub',
+    image: poidem,
+    title: {
+      EN: {
+        text: "'Let's Go' Bank"
+      },
+      RU: {
+        text: "Банк 'Пойдём'"
+      }
+    },
+    description: {
+      EN: {
+        text: "Fintech: Internal application for employees of 'Let's Go Bank!'"
+      },
+      RU: {
+        text: "Финтех: Внутреннее приложение для сотрудников банка 'Пойдём!'"
+      }
+    },
+    url:'https://www.poidem.ru/',
+    className: 'poidem',
   },
 ]
 
 const Portfolio:FC = () => {
 
-  const lang = useContext(LangContexts);
+  const lang = useContext(LangContexts) as Language;
 
   return (
     <section className="section portfolio-section" id="portfolio">
@@ -58,7 +99,7 @@ const Portfolio:FC = () => {
         <div className="project-cards">
           {
             myWorks.map((proj) => {
-              return <ProjectCard key={proj.title} projectImg={proj.image} title={proj.title} description={proj.description} url={proj.url} className={proj.className || ""}/>
+              return <ProjectCard key={proj.id} projectImg={proj.image} title={proj.title[lang].text} description={proj.description[lang].text} url={proj.url} className={proj.className || ""}/>
             })
           }
         </div>

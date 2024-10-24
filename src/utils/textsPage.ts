@@ -73,12 +73,12 @@ export const headingText:textList = {
 export const aboutMeText:textList = {
   EN: {
     par_1: "Hello! My name is Rustam Sultangaliev and I am a Frontend Developer. And this page is about me.",
-    par_2: "I specialize in building good-looking and reliable front-end (and occasionally back-end) for different services and applications.",
+    par_2: "I design sleek and reliable interfaces for web services and applications, and I also handle backend development when needed. My priority is to ensure a seamless and stable experience for your users, delivering the best possible interaction with your product.",
   }
   ,
   RU: {
     par_1: "Привет! Меня зовут Рустам Султангалиев, я фронтенд-разработчик. И эта страница обо мне.",
-    par_2: "Я специализируюсь люблю создавать красивые и актульаные внешние интерфейсы (а иногда и внутреннего интерфейса) для различных сервисов и приложений.",
+    par_2: "Я создаю стильные и надёжные интерфейсы для веб-сервисов и приложений, а также занимаюсь бэкенд-разработкой, когда это необходимо. Мой приоритет — удобство и стабильность работы каждого продукта, чтобы ваши пользователи получали лучший опыт взаимодействия с ним.",
   }
 }
 
