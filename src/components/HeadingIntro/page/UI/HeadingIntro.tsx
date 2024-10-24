@@ -3,6 +3,7 @@
 import { FC, useContext, useEffect, useMemo, useState } from 'react';
 import LangContexts from '../../../../contexts/LangContexts';
 import { textIntro } from '../data';
+
 const HeadingIntro: FC = () => {
   const lang = useContext(LangContexts);
 

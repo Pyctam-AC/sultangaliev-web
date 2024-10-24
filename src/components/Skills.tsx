@@ -26,6 +26,7 @@ import mongodbImg from '../images/skills-icons/mongodb.png';
 import appscript from '../images/skills-icons/apps_script_1x_24dp.png'
 import LangContexts from '../contexts/LangContexts';
 import { headingText, skillsText } from '../utils/textsPage';
+import ScrollDownCircle from './ScrollDownCircle';
 
 
 const Skills:FC = () => {
@@ -131,6 +132,7 @@ const Skills:FC = () => {
           <img src={skillsImg} alt="decorative" />
         </div>
       </div>
+      <ScrollDownCircle link="#portfolio_footer"/>
     </section>
   )
 }

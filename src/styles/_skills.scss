@@ -3,6 +3,7 @@
   box-sizing: border-box;
   display: flex;
   align-items: center;
+  position: relative;
 }
 
 .skills {
@@ -45,20 +46,20 @@
     flex-direction: column;
     border-radius: 40px;
     background-color: #2d2d2d;
-  
+
     &_heading {
       margin: 0 0 1rem;
       text-align: center;
       letter-spacing: 1px;
     }
-  
+
     &_list {
       display: flex;
       justify-content: space-around;
       flex-wrap: wrap;
       list-style: none;
       padding-left: 0;
-  
+
       &_item {
         width: 100%;
         max-width: 6rem;
@@ -71,13 +72,13 @@
         border-radius: 20px;
         border: 1px solid #3d3d3d;
         box-sizing: border-box;
-  
+
         img {
           width: 2rem;
           height: 2rem;
           margin-bottom: .7rem;
         }
-  
+
         p {
           font-size: .8rem;
         }
@@ -140,7 +141,7 @@
     &_list_item {
       max-width: 4.5rem;
       padding: .5rem;
-  
+
       img {
         width: 1.5rem;
         height: 1.5rem;
@@ -160,7 +161,7 @@
     &_list_item {
       max-width: 4.5rem;
       padding: .5rem .4rem;
-  
+
       img {
         width: 100%;
         max-width: 1.2rem;

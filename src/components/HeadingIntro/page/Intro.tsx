@@ -5,10 +5,10 @@ import { FC, MouseEventHandler, useCallback, useContext, useEffect, useRef, useS
 
 import scrollDownImg from '../../../images/scroll-down.png';
 import colorPalettes from "../../../utils/colorPalettes";
-
 import { textCare, textContactMe } from "../../../utils/textsPage";
 import LangContexts from "../../../contexts/LangContexts";
 import HeadingIntro from "./UI/HeadingIntro";
+import ScrollDownCircle from "../../ScrollDownCircle";
 
 export const Intro: FC = () => {
   const lang = useContext(LangContexts);
@@ -65,7 +65,7 @@ export const Intro: FC = () => {
     }
   }, [lang]);
 
-  // Новый useEffect для инициализации мерцания после загрузки squaresArray
+  // useEffect для инициализации мерцания после загрузки squaresArray
   useEffect(() => {
     if (squaresArray.length > 0) {
       const squares = document.querySelectorAll('[data-role=square]');
@@ -90,12 +90,13 @@ export const Intro: FC = () => {
         <div ref={squaresBoard} onMouseOver={squareMouseOverHandle} className="intro_board" id="board">
           {squaresArray}
         </div>
-        <a href="#about" className="intro_scroll-down">
-          <img src={scrollDownImg} className="" alt="scroll down" />
-          <span></span>
-        </a>
-
+        <ScrollDownCircle link="#about"/>
       </div>
     </section>
   );
 };
+
+        {/* <a href="#about" className="intro_scroll-down">
+          <img src={scrollDownImg} className="" alt="scroll down" />
+          <span></span>
+        </a> */}

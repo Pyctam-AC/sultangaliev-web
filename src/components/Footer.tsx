@@ -9,7 +9,7 @@ const Footer:FC = () => {
   const date = new Date().getFullYear();
 
   return (
-    <footer className="footer">
+    <footer className="footer" id='portfolio_footer'>
       <p>© {textFooter[lang].text} {date}</p>
     </footer>
   )

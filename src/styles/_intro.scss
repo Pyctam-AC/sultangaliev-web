@@ -21,6 +21,7 @@
     display: flex;
     flex-direction: column;
     z-index: 0;
+    pointer-events: none;
 
     &_line {
       position: relative;
@@ -38,6 +39,7 @@
       padding-top: 1rem;
       z-index: 3;
       white-space: nowrap;
+      pointer-events: auto;
     }
     &_second-line {
       display: inline-block;
@@ -50,6 +52,7 @@
       top: calc(#{$intro-header_margin-top} + #{$intro-header_line-height} + .2rem);
       z-index: 2;
       white-space: nowrap;
+      pointer-events: auto;
     }
     &_third-line {
       height: min-content;
@@ -62,6 +65,7 @@
       z-index: 1;
       white-space: nowrap;
       overflow: hidden;
+      pointer-events: auto;
     }
 
     &_letter {
@@ -69,6 +73,7 @@
       padding-right: .5rem;
       animation-fill-mode: both;
       animation-iteration-count: 1;
+      pointer-events: auto;
 
       &-default {
         animation-duration: 1s;
@@ -137,6 +142,7 @@
       -webkit-animation: rotation 13s infinite linear;
       animation: rotation 13s infinite linear;
     }
+
     span::after {
       opacity: 0;
       position: absolute;

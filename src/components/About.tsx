@@ -3,6 +3,7 @@ import Heading from './Heading';
 import myImg from '../images/about.png';
 import LangContexts from '../contexts/LangContexts';
 import { headingText, aboutMeText } from '../utils/textsPage';
+import ScrollDownCircle from './ScrollDownCircle';
 
 const About:FC = () => {
 
@@ -20,6 +21,7 @@ const About:FC = () => {
           <img src={myImg} alt="me" />
         </div>
       </div>
+      <ScrollDownCircle link="#skills"/>
     </section>
   )
 }
