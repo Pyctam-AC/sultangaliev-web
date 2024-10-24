@@ -2,8 +2,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { FC, MouseEventHandler, useCallback, useContext, useEffect, useRef, useState } from "react";
-
-import scrollDownImg from '../../../images/scroll-down.png';
 import colorPalettes from "../../../utils/colorPalettes";
 import { textCare, textContactMe } from "../../../utils/textsPage";
 import LangContexts from "../../../contexts/LangContexts";
