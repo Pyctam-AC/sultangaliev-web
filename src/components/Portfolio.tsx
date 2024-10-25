@@ -47,7 +47,7 @@ const myWorks: Project[] = [
         text: "Unified Settlement Center: a leading billing operator in Yekaterinburg for housing and utility services"
       },
       RU: {
-        text: "«Единый Расчетный Центр» — ведущий биллинговый оператор города Екатеринбурга в сфере начислений за жилищно-коммунальные и иные услуги"
+        text: "«Единый Расчетный Центр»: биллинговый оператор в сфере начислений за жилищно-коммунальные и иные услуги"
       }
     },
     url:'https://abonent.erc-ekb.ru/',

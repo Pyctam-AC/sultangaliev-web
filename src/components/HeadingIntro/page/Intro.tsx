@@ -83,7 +83,7 @@ export const Intro: FC = () => {
         <HeadingIntro />
         <p data-aos="fade-down" data-aos-duration="500" data-aos-delay="2900" className="text-muted intro_text">{textCare[lang].text}</p>
         <div className="intro_contact" data-aos="fade-down" data-aos-duration="800" data-aos-delay="3000">
-          <a href="#portfolio"><button className="animated-button intro_contact-button">{textContactMe[lang].text}</button></a>
+          <a href="#portfolio_footer"><button className="animated-button intro_contact-button">{textContactMe[lang].text}</button></a>
         </div>
         <div ref={squaresBoard} onMouseOver={squareMouseOverHandle} className="intro_board" id="board">
           {squaresArray}
@@ -93,8 +93,3 @@ export const Intro: FC = () => {
     </section>
   );
 };
-
-        {/* <a href="#about" className="intro_scroll-down">
-          <img src={scrollDownImg} className="" alt="scroll down" />
-          <span></span>
-        </a> */}
