@@ -93,7 +93,8 @@
         background-repeat: no-repeat;
         animation-duration: .6s;
       }
-      &-main:hover {
+      &-main:hover,
+      &-main.touched {
         animation-name: letterRotation;
       }
 

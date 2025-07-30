@@ -1,17 +1,16 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { FC, MouseEventHandler, useCallback, useContext, useEffect, useRef, useState } from "react";
+import { FC, MouseEventHandler, TouchEventHandler, useCallback, useContext, useEffect, useRef, useState } from "react";
 import colorPalettes from "../../../utils/colorPalettes";
 import { textCare, textContactMe } from "../../../utils/textsPage";
 import LangContexts from "../../../contexts/LangContexts";
 import HeadingIntro from "./UI/HeadingIntro";
 import ScrollDownCircle from "../../ScrollDownCircle";
+import { Language } from "../../../interface/types";
+
 
 export const Intro: FC = () => {
-  const lang = useContext(LangContexts);
-  const introScreen: any = useRef();
-  const squaresBoard: any = useRef();
+  const lang = useContext(LangContexts) as Language;
+  const introScreen = useRef<HTMLDivElement>(null);
+  const squaresBoard = useRef<HTMLDivElement>(null);
 
   const [activeColorPalette] = useState<string[]>(colorPalettes.neon);
   const [squaresArray, setSquaresArray] = useState<JSX.Element[]>([]);
@@ -20,6 +19,19 @@ export const Intro: FC = () => {
     const target = e.target as HTMLDivElement;
     if (target.dataset.role === 'square') {
       setColor(target);
+    }
+  };
+
+  // Обработчик для сенсорных событий, чтобы анимация работала на мобильных устройствах
+  const squareTouchHandle: TouchEventHandler<HTMLDivElement> = (e) => {
+
+    for (let i = 0; i < e.touches.length; i++) {
+      const touch = e.touches[i];
+      // Находим элемент, над которым находится палец
+      const target = document.elementFromPoint(touch.clientX, touch.clientY) as HTMLDivElement;
+      if (target && target.dataset.role === 'square') {
+        setColor(target);
+      }
     }
   };
 
@@ -49,21 +61,20 @@ export const Intro: FC = () => {
     return elementsArray[Math.round(Math.random() * (elementsArray.length - 1))] as HTMLElement;
   };
 
-  // useEffect для инициализации массива квадратов при монтировании компонента
+
   useEffect(() => {
-    const introDivRect = introScreen.current?.getBoundingClientRect();
+    const introDiv = introScreen.current;
+    if (introDiv) {
+      const { width, height } = introDiv.getBoundingClientRect();
+      // Размер квадрата 20x20px
+      const squaresAmount = Math.floor(width * height / 400);
 
-    if (introDivRect) {
-      const squaresAmount = Math.floor((introDivRect.width ?? 0) * (introDivRect.height ?? 0) / (20 * 20));
-      const newSquaresArray: Array<JSX.Element> = [];
-      for (let i = 0; i < squaresAmount; i++) {
-        newSquaresArray.push(<div key={i} className="square" data-role="square"></div>);
-      }
-      setSquaresArray(newSquaresArray);
+      const newSquaresArray = Array.from({ length: squaresAmount }, (_, i) => (
+        <div key={i} className="square" data-role="square"></div>
+      ));
+      setSquaresArray(newSquaresArray)
     }
-  }, [lang]);
-
-  // useEffect для инициализации мерцания после загрузки squaresArray
+  }, []);
   useEffect(() => {
     if (squaresArray.length > 0) {
       const squares = document.querySelectorAll('[data-role=square]');
@@ -75,6 +86,7 @@ export const Intro: FC = () => {
 
       return () => clearInterval(intervalId);
     }
+
   }, [squaresArray, setColor]);
 
   return (
@@ -85,7 +97,14 @@ export const Intro: FC = () => {
         <div className="intro_contact" data-aos="fade-down" data-aos-duration="800" data-aos-delay="3000">
           <a href="#portfolio_footer"><button className="animated-button intro_contact-button">{textContactMe[lang].text}</button></a>
         </div>
-        <div ref={squaresBoard} onMouseOver={squareMouseOverHandle} className="intro_board" id="board">
+        <div
+          ref={squaresBoard}
+          onMouseOver={squareMouseOverHandle}
+          onTouchStart={squareTouchHandle}
+          onTouchMove={squareTouchHandle}
+          className="intro_board"
+          id="board"
+        >
           {squaresArray}
         </div>
         <ScrollDownCircle link="#about"/>

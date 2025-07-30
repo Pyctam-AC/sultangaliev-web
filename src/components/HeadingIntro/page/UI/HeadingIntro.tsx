@@ -1,57 +1,69 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { FC, useContext, useEffect, useMemo, useState } from 'react';
+import { FC, TouchEventHandler, useContext, useMemo } from 'react';
 import LangContexts from '../../../../contexts/LangContexts';
 import { textIntro } from '../data';
+import { Language } from '../../../../interface/types';
+
 
 const HeadingIntro: FC = () => {
-  const lang = useContext(LangContexts);
 
-
-  const [change, setChange] = useState(false);
+  const lang = useContext(LangContexts) as Language;
 
   const [firstLine, secondLine, thirdLine] = useMemo(() => {
-    if (change) return [null, null, null];
     return [
       textIntro[lang].first_Line.split(''),
       textIntro[lang].second_Line.split(''),
       textIntro[lang].third_Line.split('')
     ];
-  }, [lang, change]);
-
-  useEffect(() => {
-    setChange(true);
-    setTimeout(() => {
-      setChange(false);
-    }, 100);
+    // Этот useMemo теперь зависит только от языка
   }, [lang]);
 
   const classLetter = (char: string) => (char === ' ' ? 'space' : 'letter');
   const letterImg = (char: string) =>
     char === 'R' || char === 'Р' ? 'intro_header_letter-main' : 'intro_header_letter-default';
 
-  const renderLine = (line: string[] | null, delayMultiplier: number, lineClass: string) => (
-    <div className='intro_header_line'>
+  // Общая задержка для последовательного появления каждой буквы
+  const letterAnimationDelay = 50;
 
-      {line?.map((letter, i) => (
-        <h1
-          key={i}
-          className={`intro_header_letter ${lineClass} ${letterImg(letter)} ${classLetter(letter)}`}
-          data-aos='zoom-in'
-          data-aos-duration='200'
-          data-aos-delay={`${i * delayMultiplier}`}
-        >
-          {letter === "R" || letter === "Р" ? " " : letter}
-        </h1>
-      ))}
+  // Обработчик для сенсорных событий, чтобы анимация вращения буквы 'R' работала на мобильных устройствах
+  const handleTouch: TouchEventHandler<HTMLHeadingElement> = (e) => {
+    const target = e.currentTarget;
+
+    target.classList.add('touched');
+
+    setTimeout(() => {
+      target.classList.remove('touched');
+    }, 1000);
+  };
+
+  const renderLine = (line: string[] | null, baseIndex: number, lineClass: string) => (
+    <div className='intro_header_line'>
+      {line?.map((letter, i) => {
+        const isSpecialLetter = letter === "R" || letter === "Р";
+        return (
+          <h1
+            key={i}
+            className={`intro_header_letter ${lineClass} ${letterImg(letter)} ${classLetter(letter)}`}
+            data-aos='zoom-in'
+            data-aos-duration='200'
+            data-aos-delay={`${(baseIndex + i) * letterAnimationDelay}`}
+            onTouchStart={isSpecialLetter ? handleTouch : undefined}
+          >
+            {isSpecialLetter ? " " : letter}
+          </h1>
+        );
+      })}
     </div>
   );
 
+  const firstLineLength = firstLine?.length || 0;
+  const secondLineLength = secondLine?.length || 0;
+
   return (
-    <header className='intro_header'>
-      {renderLine(firstLine, 200, 'intro_header_first-line')}
-      {renderLine(secondLine, 150, 'intro_header_second-line')}
-      {renderLine(thirdLine, 100, 'intro_header_second-line')}
+
+    <header key={lang} className='intro_header'>
+      {renderLine(firstLine, 0, 'intro_header_first-line')}
+      {renderLine(secondLine, firstLineLength, 'intro_header_second-line')}
+      {renderLine(thirdLine, firstLineLength + secondLineLength, 'intro_header_second-line')}
     </header>
   );
 };

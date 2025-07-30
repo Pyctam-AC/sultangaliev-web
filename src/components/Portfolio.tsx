@@ -6,7 +6,7 @@ import poidem from '../images/projects-screenshots/poidem-bank-logo.svg'
 import telegram from '../images/telegram-pngegg.png'
 import LangContexts from "../contexts/LangContexts";
 import { headingText, portfolioText } from "../utils/textsPage";
-
+import { Language } from '../interface/types';
 
 interface LanguageText {
   text: string;
@@ -26,9 +26,6 @@ interface Project {
   url: string;
   className: string;
 }
-
-type Language = 'EN' | 'RU';
-
 
 const myWorks: Project[] = [
   {

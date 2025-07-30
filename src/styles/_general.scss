@@ -17,13 +17,6 @@ body {
   min-height: 100vh;
   /* mobile viewport bug fix */
   min-height: -webkit-fill-available;
-
-  // color: $main_text-color;
-  // padding-left: $main-menu_width;
-  // display: block;
-  // min-width: 320px;
-  // overflow-y: scroll;
-  // overflow-x: hidden;
 }
 
 body::-webkit-scrollbar {
